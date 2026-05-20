@@ -38,14 +38,14 @@
         elseif(!preg_match('/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[\W_]).{8,}$/',$password)){
             $message = "<div class='alert alert-warning'>Password must contain uppercase, lowercase, number and special character</div>";
         }else{
-                $password = md5($password);
-                $stmt = $conn->prepare("UPDATE users SET password=?, otp=NULL, otp_expire=NULL WHERE id=?");
-                $stmt->bind_param("si",$password,$user_id);
-                if($stmt->execute()){
-                    $message = '<div class="alert alert-success">Password updated successfully</div>';
-                }else{
-                    $message = '<div class="alert alert-danger">Something went wrong</div>';
-                }
+            $password = md5($password);
+            $stmt = $conn->prepare("UPDATE users SET password=?, otp=NULL, otp_expire=NULL WHERE id=?");
+            $stmt->bind_param("si",$password,$user_id);
+            if($stmt->execute()){
+                $message = '<div class="alert alert-success">Password updated successfully</div>';
+            }else{
+                $message = '<div class="alert alert-danger">Something went wrong</div>';
+            }
         }
     }
 
